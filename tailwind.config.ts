@@ -11,7 +11,18 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        text: "var(--text)",
+        placeholder: "var(--placeholder)",
+        primary_gradient: "var(--primry-gradient)",
+        second_gradient: "var(--second-gradient)",
       },
+      fontSize: {
+        sm: "--var(font-size-sm)",
+        base: "--var(font-size-base)",
+        lg: "--var(font-size-lg)",
+        xl: "--var(font-size-xl)",
+        xll: "--var(font-size-2xl)",
+      }
     },
   },
   plugins: [],

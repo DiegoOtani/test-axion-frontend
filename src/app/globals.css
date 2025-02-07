@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -9,13 +11,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f9f9f9;
+    --foreground: #ffffff;
+    --text: #4A4A4A;
+    --placeholder: #9B9B9B;
+    --primry-gradient: #AE23A9;
+    --second-gradient: #DC4E1B;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 28px;
+    --font-size-2xl: 32px;
   }
 }
 
 body {
-  color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans";
 }
