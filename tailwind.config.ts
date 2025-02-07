@@ -17,11 +17,15 @@ export default {
         second_gradient: "var(--second-gradient)",
       },
       fontSize: {
-        sm: "--var(font-size-sm)",
-        base: "--var(font-size-base)",
-        lg: "--var(font-size-lg)",
-        xl: "--var(font-size-xl)",
-        xll: "--var(font-size-2xl)",
+        sm: "var(--font-size-sm)",
+        base: "var(--font-size-base)",
+        lg: "var(--font-size-lg)",
+        xl: "var(--font-size-xl)",
+        xll: "var(--font-size-2xl)",
+      },
+      fontFamily: {
+        title: ["var(--font-family-title)"],
+        text: ["var(--font-family-text)"],
       }
     },
   },
