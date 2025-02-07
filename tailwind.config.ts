@@ -18,7 +18,7 @@ export default {
       },
       fontSize: {
         sm: "var(--font-size-sm)",
-        base: "var(--font-size-base)",
+        md: "var(--font-size-md)",
         lg: "var(--font-size-lg)",
         xl: "var(--font-size-xl)",
         xll: "var(--font-size-2xl)",
