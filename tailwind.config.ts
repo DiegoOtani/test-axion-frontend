@@ -24,7 +24,6 @@ export default {
         xll: "var(--font-size-2xl)",
       },
       fontFamily: {
-        title: ["var(--font-family-title)"],
         text: ["var(--font-family-text)"],
       }
     },
