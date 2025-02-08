@@ -2,7 +2,7 @@
 
 const loginAction = async (email: string, password: string) => {
 
-  const response = await fetch(`${process.env.BACKEN_API_URL}/auth/local`, {
+  const response = await fetch(`${process.env.BACKEND_API_URL}/auth/local`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -16,7 +16,6 @@ const loginAction = async (email: string, password: string) => {
   if(!response.ok) return { error: "Usuário ou senha incorretos!"};
 
   const data = await response.json()
-  console.log(data);
   return data;
 }
 
