@@ -1,34 +1,36 @@
 "use client"
 
+import loginAction from "@/actions/login";
 import Image from "next/image";
 import InputArea from "../InputArea";
 import { useState } from "react";
 import Button from "../Button";
 
 const Form = () => {
-  const [ username, setUsername ] = useState<string>("");
-  const [ email, setEmail ] = useState<string>("");
-  const [ password, setPassword ] = useState<string>("");
   const [ showPassword, setShowPassword ] = useState<boolean>(false);
   const [ isRegistering, setIsRegistering ] = useState<boolean>(false);
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+  const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    const email = formData.get('Email') as string;
+    const password = formData.get('Password') as string;
+    const response = await loginAction(email, password)
+
+    if(response.error) return console.error(response.error)
+
+    console.log(response)
   }
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
 
   const handleRegisterClick = () => {
     setIsRegistering(!isRegistering);
   }
 
-  return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10">
+  return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10"
+    onSubmit={handleLoginSubmit}
+  >
     <Image 
       className="w-[230px] h-auto"
       src={"/logo.png"} 
@@ -41,23 +43,17 @@ const Form = () => {
         <InputArea 
           name="Username"
           placeholder="Your username"
-          onChange={handleUsernameChange}
-          value={username}
         />
       )}
       <InputArea 
         iconImg="/mail.png"
         name="Email"
         placeholder="seunome@email.com"
-        onChange={handleEmailChange}
-        value={email}
       />
       <InputArea 
         iconImg="/lock.png"
         name="Password"
         placeholder="Password"
-        onChange={handlePasswordChange}
-        value={password}
         showPassword={showPassword}
       />
       <div className="flex gap-3 items-center">
@@ -82,7 +78,6 @@ const Form = () => {
     <Button 
       key={"acess-button"}
       text={isRegistering ? "Cadastrar" : "Acessar"}
-      onClick={() => console.log("Botão de acessar")}
       style="gradient"
       type="submit"
     />
