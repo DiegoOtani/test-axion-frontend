@@ -6,9 +6,15 @@ import { useState } from "react";
 import Button from "../Button";
 
 const Form = () => {
+  const [ username, setUsername ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
   const [ showPassword, setShowPassword ] = useState<boolean>(false);
+  const [ isRegistering, setIsRegistering ] = useState<boolean>(false);
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  }
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -17,6 +23,10 @@ const Form = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  const handleRegisterClick = () => {
+    setIsRegistering(!isRegistering);
+  }
 
   return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10">
     <Image 
@@ -27,6 +37,14 @@ const Form = () => {
       height={20}
     />
     <section className="flex flex-col gap-3">
+      {isRegistering && (
+        <InputArea 
+          name="Username"
+          placeholder="Your username"
+          onChange={handleUsernameChange}
+          value={username}
+        />
+      )}
       <InputArea 
         iconImg="/mail.png"
         name="Email"
@@ -63,9 +81,10 @@ const Form = () => {
 
     <Button 
       key={"acess-button"}
-      text="Acessar"
+      text={isRegistering ? "Cadastrar" : "Acessar"}
       onClick={() => console.log("Botão de acessar")}
       style="gradient"
+      type="submit"
     />
 
     <div className="flex items-center gap-2">
@@ -76,9 +95,10 @@ const Form = () => {
 
     <Button 
       key={"register-button"}
-      onClick={() => console.log("Botão de registrar")}
+      onClick={handleRegisterClick}
       style="default"
-      text="Cadastrar"
+      text={isRegistering ? "Acessar" : "Cadastrar"}
+      type="button"
     />
 
     <span className="text-text font-light text-sm">

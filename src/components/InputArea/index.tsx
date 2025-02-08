@@ -15,12 +15,14 @@ const InputArea = ({ name, placeholder, onChange, value, iconImg, showPassword =
         placeholder={placeholder} 
         onChange={onChange}
       />
-      <Image className="w-5 h-5"
-        alt={name} 
-        src={iconImg} 
-        width={20}
-        height={20}
-      />
+      {iconImg && (
+        <Image className="w-5 h-5"
+          alt={name} 
+          src={iconImg} 
+          width={20}
+          height={20}
+        />
+      )}
     </div>
   </section>
 }
