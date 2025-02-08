@@ -17,7 +17,7 @@ const Form = () => {
     setPassword(e.target.value);
   };
 
-  return <form className="shadow-custom p-10 max-w-[430px] flex flex-col gap-10">
+  return <form className="shadow-custom p-12 max-w-[430px] flex flex-col gap-10">
     <Image 
       className="w-[230px] h-auto"
       src={"/logo.png"} 
