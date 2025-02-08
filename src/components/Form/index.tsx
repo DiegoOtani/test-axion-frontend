@@ -1,6 +1,7 @@
 "use client"
 
 import loginAction from "@/actions/login";
+import registerAction from "@/actions/register";
 import Image from "next/image";
 import InputArea from "../InputArea";
 import { useState } from "react";
@@ -17,6 +18,7 @@ const Form = () => {
 
     const email = formData.get('Email') as string;
     const password = formData.get('Password') as string;
+
     const response = await loginAction(email, password)
 
     if(response.error) return console.error(response.error)
@@ -24,12 +26,29 @@ const Form = () => {
     console.log(response)
   }
 
+  const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    const username = formData.get('Username') as string;
+    const email = formData.get('Email') as string;
+    const password = formData.get('Password') as string;
+
+    if(!username) return;
+
+    const response = await registerAction(username, email, password)
+
+    if(response.error) return console.error(response.error);
+    console.log(response);
+  }
+
   const handleRegisterClick = () => {
     setIsRegistering(!isRegistering);
   }
 
   return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10"
-    onSubmit={handleLoginSubmit}
+    onSubmit={isRegistering ? handleRegisterSubmit : handleLoginSubmit}
   >
     <Image 
       className="w-[230px] h-auto"
