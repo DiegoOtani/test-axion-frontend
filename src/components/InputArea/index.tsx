@@ -1,7 +1,7 @@
 import { InputProps } from "./types";
 import Image from "next/image";
 
-const InputArea = ({ name, placeholder, onChange, value, iconImg }: InputProps) => {
+const InputArea = ({ name, placeholder, onChange, value, iconImg, showPassword = true }: InputProps) => {
   return <section className="flex flex-col gap-2">
     <span className="text-md font-semibold text-text">
       {name}
@@ -9,7 +9,7 @@ const InputArea = ({ name, placeholder, onChange, value, iconImg }: InputProps) 
     <div className="flex py-[18px] px-5 border border-text ">
       <input 
         className="w-full placeholder:text-placeholder text-text text-md font-light"
-        type="text" 
+        type={showPassword ? "text" : "password"} 
         name={name}
         value={value} 
         placeholder={placeholder} 

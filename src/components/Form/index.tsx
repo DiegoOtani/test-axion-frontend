@@ -40,6 +40,7 @@ const Form = () => {
         placeholder="Password"
         onChange={handlePasswordChange}
         value={password}
+        showPassword={showPassword}
       />
       <div className="flex gap-3 items-center">
         <input 

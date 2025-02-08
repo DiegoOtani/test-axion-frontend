@@ -4,4 +4,5 @@ export type InputProps = {
   iconImg: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  showPassword?: boolean;
 };
