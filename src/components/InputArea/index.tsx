@@ -12,6 +12,7 @@ const InputArea = ({ name, placeholder, iconImg, showPassword = true }: InputPro
         type={showPassword ? "text" : "password"} 
         name={name}
         placeholder={placeholder} 
+        autoComplete={showPassword ? 'current-password' : ''}
       />
       {iconImg && (
         <Image className="w-5 h-5"
