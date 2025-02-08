@@ -37,4 +37,6 @@
 
 body {
   background: var(--background);
+  font-family: "Open Sans", serif;
+  letter-spacing: 1px;
 }
