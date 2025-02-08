@@ -8,6 +8,7 @@ import Button from "../Button";
 const Form = () => {
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
+  const [ showPassword, setShowPassword ] = useState<boolean>(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -42,9 +43,11 @@ const Form = () => {
       />
       <div className="flex gap-3 items-center">
         <input 
-          className="appearance-none w-4 h-4 border border-text"
+          className="appearance-none w-4 h-4 border border-text checked:bg-placeholder checked:border-text cursor-pointer"
           type="checkbox" 
           id="showPassword"
+          onChange={() => setShowPassword(!showPassword)}
+          checked={showPassword}
         />
         <label className="text-text font-light text-md" htmlFor="showPassword">
           Mostrar a senha.
