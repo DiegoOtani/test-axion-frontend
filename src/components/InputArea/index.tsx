@@ -1,7 +1,7 @@
 import { InputProps } from "./types";
 import Image from "next/image";
 
-const InputArea = ({ name, placeholder, onChange, value, iconImg, showPassword = true }: InputProps) => {
+const InputArea = ({ name, placeholder, iconImg, showPassword = true }: InputProps) => {
   return <section className="flex flex-col gap-2">
     <span className="text-md font-semibold text-text">
       {name}
@@ -11,9 +11,7 @@ const InputArea = ({ name, placeholder, onChange, value, iconImg, showPassword =
         className="w-full placeholder:text-placeholder text-text text-md font-light"
         type={showPassword ? "text" : "password"} 
         name={name}
-        value={value} 
         placeholder={placeholder} 
-        onChange={onChange}
       />
       {iconImg && (
         <Image className="w-5 h-5"
