@@ -9,11 +9,13 @@ export const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
   const email = formData.get('Email') as string;
   const password = formData.get('Password') as string;
 
-  const response = await loginAction(email, password)
+  const response = await loginAction(email, password);
+
+  (e.target as HTMLFormElement).reset();
 
   if(response.error) return console.error(response.error)
 
-  console.log(response)
+  console.log(response);
 }
 
 export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -27,8 +29,12 @@ export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>) =
 
   if(!username) return;
 
-  const response = await registerAction(username, email, password)
+  const response = await registerAction(username, email, password);
+
+  (e.target as HTMLFormElement).reset();
 
   if(response.error) return console.error(response.error);
   console.log(response);
+
+  
 }
