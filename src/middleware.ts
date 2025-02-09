@@ -23,6 +23,7 @@ export const config = {
   matcher: [
     "/",
     "/people/:path*",
-    "/place/:path*"
+    "/place/:path*",
+    "/login",
   ]
 };
