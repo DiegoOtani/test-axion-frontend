@@ -1,8 +1,11 @@
 import Image from "next/image";
 import NavOption from "../NavOption";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+
   return <header className="flex py-7 px-[250px] items-center justify-between bg-foreground shadow-custom">
     <Link href={"/"}>
       <Image
@@ -16,9 +19,9 @@ const Header = () => {
     </Link>
     <nav>
       <ul className="flex gap-14">
-        <NavOption active={false} href="/" text="FOODS"/>
-        <NavOption active={false} href="/" text="PEOPLE"/>
-        <NavOption active={false} href="/" text="PLACES"/>
+        <NavOption active={pathname === "/"} href="/" text="FOODS"/>
+        <NavOption active={pathname === "/people"} href="/people" text="PEOPLE"/>
+        <NavOption active={pathname === "/place"} href="/place" text="PLACES"/>
       </ul>
     </nav>
   </header>
