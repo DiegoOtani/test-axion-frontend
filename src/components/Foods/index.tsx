@@ -1,5 +1,6 @@
 import { Food } from "@/types/foods";
 import Card from "../Card";
+import CardsContainer from "../CardsContainer";
 
 const Foods = async() => {
   const response = await fetch(`${process.env.BACKEND_API_URL}/foods`);
@@ -11,11 +12,11 @@ const Foods = async() => {
   const data: Food[] = await response.json();
 
   return (
-    <section className="grid grid-cols-3 gap-8">
+    <CardsContainer>
       {data.map((food) => (
         <Card img_url={`${process.env.BACKEND_API_URL}${food.link}`} title={food.name} key={food.id} />
       ))}
-    </section>
+    </CardsContainer>
   );
 }
 
