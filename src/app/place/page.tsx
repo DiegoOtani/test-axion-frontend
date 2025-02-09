@@ -2,16 +2,17 @@ import { Suspense } from "react";
 import Places from "@/components/Places";
 import Loading from "@/components/Loading";
 import ListTitle from "@/components/ListTitle";
+import PagesContainer from "@/components/PagesContainer";
 
 const PeoplePage = () => {
   return(
-    <section className="px-[17.36%] flex flex-col">
+    <PagesContainer>
       <ListTitle title="PEOPLE"/>
 
       <Suspense fallback={<Loading />}>
         <Places />
       </Suspense>
-    </section>
+    </PagesContainer>
   )
 };
 

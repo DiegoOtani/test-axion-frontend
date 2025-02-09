@@ -2,16 +2,17 @@ import ListTitle from "@/components/ListTitle";
 import Loading from "@/components/Loading";
 import People from "@/components/People";
 import { Suspense } from "react";
+import PagesContainer from "@/components/PagesContainer";
 
 const PeoplePage = () => {
   return (
-    <section className="px-[17.36%] flex flex-col">
+    <PagesContainer>
       <ListTitle title="PEOPLE"/>
 
       <Suspense fallback={<Loading />}>
         <People />
       </Suspense>
-    </section>
+    </PagesContainer>
   )
 } 
 
