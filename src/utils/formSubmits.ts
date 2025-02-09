@@ -1,7 +1,7 @@
 import loginAction from "@/actions/login";
 import registerAction from "@/actions/register";
 
-export const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+export const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>, router: { push: (path: string) => void }) => {
   e.preventDefault();
 
   const formData = new FormData(e.target as HTMLFormElement);
@@ -14,11 +14,10 @@ export const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
   (e.target as HTMLFormElement).reset();
 
   if(response.error) return console.error(response.error)
-
-  console.log(response);
+  router.push('/');
 }
 
-export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>, router: { push: (path: string) => void }) => {
   e.preventDefault();
 
   const formData = new FormData(e.target as HTMLFormElement);
@@ -34,7 +33,5 @@ export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>) =
   (e.target as HTMLFormElement).reset();
 
   if(response.error) return console.error(response.error);
-  console.log(response);
-
-  
+  router.push('/');  
 }

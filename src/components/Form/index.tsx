@@ -5,17 +5,23 @@ import Image from "next/image";
 import InputArea from "../InputArea";
 import { useState } from "react";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 const Form = () => {
   const [ showPassword, setShowPassword ] = useState<boolean>(false);
   const [ isRegistering, setIsRegistering ] = useState<boolean>(false);
-
+  const router = useRouter()
   const handleRegisterClick = () => {
     setIsRegistering(!isRegistering);
   }
 
   return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10"
-    onSubmit={isRegistering ? handleRegisterSubmit : handleLoginSubmit}
+    onSubmit={isRegistering 
+      ?(e: React.FormEvent<HTMLFormElement>) => {
+        handleRegisterSubmit(e, router);
+      } : (e: React.FormEvent<HTMLFormElement>) => {
+        handleLoginSubmit(e, router);
+      }}
   >
     <Image 
       className="w-[230px] h-auto"
