@@ -1,7 +1,16 @@
-export default function Home() {
+import { Suspense } from "react";
+import Foods from "@/components/Foods";
+import Loading from "@/components/Loading";
+import ListTilte from "@/components/ListTitle";
+
+export default function FoodsPage() {
   return (
-    <div>
-      <h1>Home page</h1>
-    </div>
+    <section className="px-[17.36%] flex flex-col">
+      <ListTilte title="FOODS"/>
+      
+      <Suspense fallback={<Loading />}>
+        <Foods />
+      </Suspense>
+    </section>
   );
 }
