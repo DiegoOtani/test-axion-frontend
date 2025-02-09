@@ -1,5 +1,7 @@
 "use server"
 
+import { cookies } from "next/headers";
+
 const registerAction = async(username: string, email: string, password: string) => {
   
   const response = await fetch(`${process.env.BACKEND_API_URL}/auth/local/register`, {
@@ -17,6 +19,12 @@ const registerAction = async(username: string, email: string, password: string) 
   if(!response.ok) return { error: "Informações inválidas." };
 
   const data = await response.json();
+  
+  (await cookies()).set("jwt", data.jwt, {
+    httpOnly: true,
+    path: "/",
+    maxAge: 60 * 60,
+  })
   return data;
 }
 
