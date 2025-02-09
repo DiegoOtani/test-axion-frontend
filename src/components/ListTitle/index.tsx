@@ -1,4 +1,4 @@
-const ListTilte = ({ title }: { title: string }) => {
+const ListTitle = ({ title }: { title: string }) => {
   return <>
     <h2 className="mt-8 text-text font-semibold text-lg">LIST OF {title}</h2>
 
@@ -6,4 +6,4 @@ const ListTilte = ({ title }: { title: string }) => {
   </>
 } 
 
-export default ListTilte;
+export default ListTitle;
