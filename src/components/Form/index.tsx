@@ -28,6 +28,8 @@ const Form = () => {
     const password = formData.get("Password") as string;
     const username = isRegistering ? (formData.get("Username") as string) : "";
 
+    (e.target as HTMLFormElement).reset();
+
     if (isRegistering && !username) {
       setErrors((prev) => ({ ...prev, Username: "Nome de usuário é obrigatório" }));
       return;
@@ -55,8 +57,6 @@ const Form = () => {
     const response = isRegistering
       ? await handleRegisterSubmit({ username, email, password }, router)
       : await handleLoginSubmit({ email, password }, router);
-
-    (e.target as HTMLFormElement).reset();
     
     if (response?.error) {
       setErrors((prev) => ({ ...prev, error: response.error }));
