@@ -4,4 +4,8 @@ export type Place = {
   link: string;
   created_at: string;
   updated_at: string;
-}
+  description: string;
+  country: string;
+  language: string;
+  population: string;
+};
