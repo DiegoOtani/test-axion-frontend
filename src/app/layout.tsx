@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className="w-full min-h-[1024px]">
         <LayoutWrapper>
           {children}
         </LayoutWrapper>
