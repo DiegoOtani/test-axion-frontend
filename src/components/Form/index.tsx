@@ -10,18 +10,59 @@ import { useRouter } from "next/navigation";
 const Form = () => {
   const [ showPassword, setShowPassword ] = useState<boolean>(false);
   const [ isRegistering, setIsRegistering ] = useState<boolean>(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
   const router = useRouter()
+  
   const handleRegisterClick = () => {
     setIsRegistering(!isRegistering);
   }
 
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrors({});
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get("Email") as string;
+    const password = formData.get("Password") as string;
+    const username = isRegistering ? (formData.get("Username") as string) : "";
+
+    if (isRegistering && !username) {
+      setErrors((prev) => ({ ...prev, Username: "Nome de usuário é obrigatório" }));
+      return;
+    }
+
+    const isValidEmail = (email: string) => {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };  
+
+    if (!email) {
+      setErrors((prev) => ({ ...prev, Email: "Email é obrigatório" }));
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setErrors((prev) => ({ ...prev, Email: "Email inválido" }));
+      return;
+    }
+
+    if (!password) {
+      setErrors((prev) => ({ ...prev, Password: "Senha é obrigatória" }));
+      return;
+    }
+    
+    const response = isRegistering
+      ? await handleRegisterSubmit({ username, email, password }, router)
+      : await handleLoginSubmit({ email, password }, router);
+    (e.target as HTMLFormElement).reset();
+    if (response?.error) {
+      setErrors((prev) => ({ ...prev, error: response.error }));
+      return;
+    }
+  }
+
   return <form className="bg-foreground shadow-custom p-12 max-w-[430px] flex flex-col gap-10"
-    onSubmit={isRegistering 
-      ?(e: React.FormEvent<HTMLFormElement>) => {
-        handleRegisterSubmit(e, router);
-      } : (e: React.FormEvent<HTMLFormElement>) => {
-        handleLoginSubmit(e, router);
-      }}
+    onSubmit={handleSubmit}
   >
     <Image 
       className="w-[230px] h-auto"
@@ -32,22 +73,28 @@ const Form = () => {
     />
     <section className="flex flex-col gap-3">
       {isRegistering && (
-        <InputArea 
-          name="Username"
-          placeholder="Your username"
-        />
+        <>
+          <InputArea 
+            name="Username"
+            placeholder="Your username"
+          />
+          {errors.Username && <p className="text-red-500 text-sm">{errors.Username}</p>}
+        </>
       )}
       <InputArea 
         iconImg="/mail.png"
         name="Email"
         placeholder="seunome@email.com"
       />
+      {errors.Email && <p className="text-red-500 text-sm">{errors.Email}</p>}
       <InputArea 
         iconImg="/lock.png"
         name="Password"
         placeholder="Password"
         showPassword={showPassword}
       />
+      {errors.Password && <p className="text-red-500 text-sm">{errors.Password}</p>}
+      {errors.error && <p className="text-red-500 text-sm">{errors.error}</p>}
       <div className="flex gap-3 items-center">
         <input 
           className="appearance-none w-4 h-4 border border-text checked:bg-placeholder checked:border-text cursor-pointer"

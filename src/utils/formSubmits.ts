@@ -1,37 +1,23 @@
 import loginAction from "@/actions/login";
 import registerAction from "@/actions/register";
 
-export const handleLoginSubmit = async(e: React.FormEvent<HTMLFormElement>, router: { push: (path: string) => void }) => {
-  e.preventDefault();
-
-  const formData = new FormData(e.target as HTMLFormElement);
-
-  const email = formData.get('Email') as string;
-  const password = formData.get('Password') as string;
+export const handleLoginSubmit = async(
+    { email, password }: { email: string, password: string }, 
+    router: { push: (path: string) => void }
+  ) => {
 
   const response = await loginAction(email, password);
-
-  (e.target as HTMLFormElement).reset();
-
-  if(response.error) return console.error(response.error)
+  if(response.error) return response;
   router.push('/');
 }
 
-export const handleRegisterSubmit = async(e: React.FormEvent<HTMLFormElement>, router: { push: (path: string) => void }) => {
-  e.preventDefault();
-
-  const formData = new FormData(e.target as HTMLFormElement);
-
-  const username = formData.get('Username') as string;
-  const email = formData.get('Email') as string;
-  const password = formData.get('Password') as string;
-
-  if(!username) return;
+export const handleRegisterSubmit = async(
+  {  email, password, username }: { email: string, password: string, username: string }, 
+    router: { push: (path: string) => void }
+  ) => {
 
   const response = await registerAction(username, email, password);
 
-  (e.target as HTMLFormElement).reset();
-
-  if(response.error) return console.error(response.error);
+  if(response.error) return response;
   router.push('/');  
 }
