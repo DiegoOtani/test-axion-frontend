@@ -24,7 +24,14 @@ const registerAction = async(username: string, email: string, password: string) 
     httpOnly: true,
     path: "/",
     maxAge: 60 * 60,
-  })
+  });
+
+  (await cookies()).set("user", JSON.stringify(data.user), {
+    httpOnly: false,
+    path: "/",
+    maxAge: 60 * 60,
+  });
+  
   return data;
 }
 
