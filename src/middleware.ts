@@ -24,6 +24,7 @@ export const config = {
     "/",
     "/people/:path*",
     "/place/:path*",
+    "/foods/:path*",
     "/login",
   ]
 };
