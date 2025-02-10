@@ -16,6 +16,7 @@ const Form = () => {
   
   const handleRegisterClick = () => {
     setIsRegistering(!isRegistering);
+    setErrors({});
   }
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +55,9 @@ const Form = () => {
     const response = isRegistering
       ? await handleRegisterSubmit({ username, email, password }, router)
       : await handleLoginSubmit({ email, password }, router);
+
     (e.target as HTMLFormElement).reset();
+    
     if (response?.error) {
       setErrors((prev) => ({ ...prev, error: response.error }));
       return;
