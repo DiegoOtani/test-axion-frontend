@@ -8,7 +8,7 @@ const Button = ({ text, onClick, style, type }: ButtonProps) => {
   const gradientStyle = "bg-gradient-to-r from-primary_gradient to-second_gradient text-foreground";
 
   return <button 
-    className={`w-full py-[18px] font-semibold text-md font-text ${style === 'default' ? defaultStyle : gradientStyle} hover:opacity-85`}
+    className={`w-full py-[18px] font-semibold text-md ${style === 'default' ? defaultStyle : gradientStyle} hover:opacity-85`}
       onClick={onClick}
       type={type}
     >

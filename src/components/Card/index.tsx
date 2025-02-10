@@ -9,7 +9,7 @@ const Card = ({ title, img_url }: CardProps) => {
       width={290}
       height={290}
     />
-    <h2 className="absolute font-bold text-xl bottom-3 left-5 text-foreground font-text">
+    <h2 className="absolute font-bold text-xl bottom-3 left-5 text-foreground ">
       {title}
     </h2>
   </div>
