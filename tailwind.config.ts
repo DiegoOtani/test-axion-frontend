@@ -23,9 +23,6 @@ export default {
         xl: "var(--font-size-xl)",
         xll: "var(--font-size-2xl)",
       },
-      fontFamily: {
-        text: ["var(--font-family-text)"],
-      },
       boxShadow: {
         custom: '0px 2px 7px 3px rgba(0, 0, 0, 0.1)'
       }
