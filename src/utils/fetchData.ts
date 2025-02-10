@@ -11,9 +11,5 @@ export const fetchData = async(endpoint: string) => {
     },
   });
 
-  if (!response.ok) {
-    throw new Error("Error to search foods.");
-  }
-
   return response;
 }
