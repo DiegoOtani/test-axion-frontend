@@ -7,7 +7,7 @@ import PagesContainer from "@/components/PagesContainer";
 export default function FoodsPage() {
   return (
     <PagesContainer>
-      <ListTitle title="FOODS"/>
+      <ListTitle title="LIST OF FOODS"/>
       
       <Suspense fallback={<Loading />}>
         <Foods />

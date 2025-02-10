@@ -7,7 +7,7 @@ import PagesContainer from "@/components/PagesContainer";
 const PeoplePage = () => {
   return (
     <PagesContainer>
-      <ListTitle title="PEOPLE"/>
+      <ListTitle title="LIST OF PEOPLE"/>
 
       <Suspense fallback={<Loading />}>
         <People />
