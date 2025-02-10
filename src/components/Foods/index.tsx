@@ -1,13 +1,11 @@
 import type { Food } from "@/types/foods";
 import Card from "../Card";
 import CardsContainer from "../CardsContainer";
+import { fetchData } from "@/utils/fetchData";
 
-const Foods = async() => {
-  const response = await fetch(`${process.env.BACKEND_API_URL}/foods`);
+const Foods = async () => {
 
-  if (!response.ok) {
-    throw new Error("Error to search foods.");
-  }
+  const response = await fetchData('/foods');
 
   const data: Food[] = await response.json();
 
@@ -22,6 +20,6 @@ const Foods = async() => {
       ))}
     </CardsContainer>
   );
-}
+};
 
 export default Foods;

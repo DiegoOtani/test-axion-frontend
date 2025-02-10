@@ -1,13 +1,10 @@
 import type { Place } from "@/types/places";
 import Card from "../Card";
 import CardsContainer from "../CardsContainer";
+import { fetchData } from "@/utils/fetchData";
 
 const Places = async() => {
-  const response = await fetch(`${process.env.BACKEND_API_URL}/places`);
-
-  if (!response.ok) {
-    throw new Error("Error to search places.");
-  }
+  const response = await fetchData('/places');
 
   const data: Place[] = await response.json();
 

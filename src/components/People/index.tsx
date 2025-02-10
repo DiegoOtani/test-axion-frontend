@@ -1,13 +1,10 @@
 import type { People } from "@/types/peoples";
 import Card from "../Card";
 import CardsContainer from "../CardsContainer";
+import { fetchData } from "@/utils/fetchData";
 
 const People = async() => {
-  const response = await fetch(`${process.env.BACKEND_API_URL}/people`);
-  
-  if (!response.ok) {
-    throw new Error("Error to search peoples.");
-  }
+  const response = await fetchData('/people');
 
   const data: People[] = await response.json();
 
