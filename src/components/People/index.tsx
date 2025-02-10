@@ -15,6 +15,7 @@ const People = async() => {
           key={people.id} 
           title={people.name}
           img_url={`${process.env.BACKEND_API_URL}${people.link}`} 
+          href={`/people/${people.id}`}
         />
       ))}
     </CardsContainer>
