@@ -53,6 +53,18 @@ const Form = () => {
       setErrors((prev) => ({ ...prev, Password: "Senha é obrigatória" }));
       return;
     }
+
+    const isValidPassword = (password: string) => {
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password);
+    };
+
+    if (isRegistering && !isValidPassword(password)) {
+      setErrors((prev) => ({
+        ...prev,
+        Password: "A senha deve ter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.",
+      }));
+      return;
+    }
     
     const response = isRegistering
       ? await handleRegisterSubmit({ username, email, password }, router)
