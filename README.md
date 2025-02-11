@@ -18,7 +18,7 @@
 1. **Clone o repositório**  
    ```sh
    git clone https://github.com/DiegoOtani/test-axion-frontend.git
-   cd axios-test-frontend
+   cd test-axion-frontend
    ```
 
 2. **Instale as dependências**
