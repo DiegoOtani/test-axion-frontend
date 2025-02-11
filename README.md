@@ -5,7 +5,7 @@
 * O layout seguiu o protótipo https://marvelapp.com/35gh79g
 * A API possui um usuário cadastrado que pode ser usado para acessar a aplicação pelo formulário de login, informações de acesso:
   
-  ```json
+  ```
   email: axioner@axion.company
   senha: Axioner123
   ```
