@@ -2,9 +2,12 @@ import type { People } from "@/types/peoples";
 import Card from "../Card";
 import CardsContainer from "../CardsContainer";
 import { fetchData } from "@/utils/fetchData";
+import ErrorMessage from "../ErrorMessage";
 
 const People = async() => {
   const response = await fetchData('/people');
+
+  if("error" in response) return <ErrorMessage message="PEOPLES NOT FOUND."/>
 
   const data: People[] = await response.json();
 

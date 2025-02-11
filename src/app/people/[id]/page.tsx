@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import DescriptionList from "@/components/DescriptionList";
+import ErrorMessage from "@/components/ErrorMessage";
 import ListTitle from "@/components/ListTitle";
 import PagesContainer from "@/components/PagesContainer";
 import { People } from "@/types/peoples";
@@ -14,7 +15,9 @@ const PeopleInfoPage = async({ params }: PeopleInfoProps) => {
 
   const response = await fetchData(`/people/${id}`);
 
-  if(!response.ok) return <p>People not found.</p>
+  if ("error" in response) return <ErrorMessage message="ERROR CONNECT TO SERVER. TRY AGAIN LATER."/>
+
+  if(!response.ok) return <ErrorMessage message="PEOPLE NOT FOUND."/>
 
   const data: People = await response.json();
 

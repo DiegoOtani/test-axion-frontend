@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import DescriptionList from "@/components/DescriptionList";
+import ErrorMessage from "@/components/ErrorMessage";
 import ListTitle from "@/components/ListTitle";
 import PagesContainer from "@/components/PagesContainer";
 import { Place } from "@/types/places";
@@ -14,7 +15,9 @@ const PlaceInfoPage = async({ params }: PlaceInfoProps) => {
 
   const response = await fetchData(`/places/${id}`);
 
-  if(!response.ok) return <p>Place not found</p>
+  if ("error" in response) return <ErrorMessage message="ERROR CONNECT TO SERVER. TRY AGAIN LATER."/>
+  
+  if(!response.ok) return <ErrorMessage message="PLACE NOT FOUND"/>
 
   const data: Place = await response.json();
 
